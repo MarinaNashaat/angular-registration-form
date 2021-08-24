@@ -1,0 +1,46 @@
+<section class="log-in">
+    <div class="container">
+        <div class="signin-content">
+            <div class="signin-image">
+                <img src="../../assets/images/signin-image.jpg" alt="sing up image">
+                <p class="signup-image-link">Don't have an account? <a routerLink="/signup">Sign Up!</a></p>
+            </div>
+            <div class="signin-form">
+                <h2 class="form-title">Log In</h2>
+                <form [formGroup]="form" (ngSubmit)="login()" class="register-form" id="login-form">
+
+                    <div class="alert alert-danger" *ngIf="form.errors">Username or Password is invalid!</div>
+                    <div class="form-group">
+                        <label for="username"><i class="fa fa-user"></i></label>
+                        <input formControlName="username" id="username" type="text" class="form-control" placeholder="User Name">
+                        <div *ngIf="f.username.pending">Checking the name...</div>
+                        <div class="alert alert-danger" *ngIf="f.username.touched && f.username.invalid">
+                            <div *ngIf="f.username.errors?.required">Username is Required!</div>
+                            <div *ngIf="f.username.errors?.minlength">Username should be more than {{f.username.errors?.minlength.requiredLength}} characters</div>
+                            <div *ngIf="f.username.errors?.cannotContainSpace">Username should not contain any spaces</div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><i class="fa fa-lock"></i></label>
+                        <input formControlName="password" id="password" type="text" class="form-control" placeholder="Password">
+                        <div class="alert alert-danger" *ngIf="f.password.touched && f.password.invalid">
+                            <div *ngIf="f.password.errors?.required">Password is Required!</div>
+                            <div *ngIf="f.password.errors?.cannotContainSpace">Password should not contain any spaces</div>
+                            <div *ngIf="f.password.errors?.WrongPassword">Invalid Password</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                        <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                    </div>
+                    <div class="form-group form-button">
+                        <button class="btn form-submit" type="submit" [disabled]="form.invalid">Log In</button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</section>
